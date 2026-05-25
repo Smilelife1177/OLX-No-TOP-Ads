@@ -1,25 +1,16 @@
-// Function to hide ads based on selectors and content
+// Function to hide ads based on URL parameters
 const hideTopAds = () => {
-    // 1. Find all ad cards
-    const adCards = document.querySelectorAll('div[data-testid="l-card"]');
+    // 1. Find all potential ad containers
+    // Based on the provided HTML, ads are wrapped in div.css-ri9uxm
+    const adContainers = document.querySelectorAll('div.css-ri9uxm, div[data-testid="l-card"]');
     
-    adCards.forEach(card => {
-        // Check for common markers of TOP ads inside the card
-        const hasBadgeTestId = card.querySelector('[data-testid="ad-badge"]');
-        const hasUserClass = card.querySelector('.css-3xiokn');
+    adContainers.forEach(container => {
+        // Check if the container has a link that points to a promoted ad
+        // Promoted ads have "promoted" in their search_reason parameter
+        const promotedLink = container.querySelector('a[href*="promoted"]');
         
-        // Text-based check: find any small element that says "ТОП"
-        let hasTopText = false;
-        const potentialBadges = card.querySelectorAll('div, span');
-        for (const el of potentialBadges) {
-            if (el.textContent.trim() === 'ТОП') {
-                hasTopText = true;
-                break;
-            }
-        }
-
-        if (hasBadgeTestId || hasUserClass || hasTopText) {
-            card.style.display = 'none';
+        if (promotedLink) {
+            container.style.display = 'none';
         }
     });
 };
@@ -37,4 +28,4 @@ observer.observe(document.body, {
     subtree: true
 });
 
-console.log('OLX No TOP Ads extension active.');
+console.log('OLX No TOP Ads extension active (URL-based filtering).');
