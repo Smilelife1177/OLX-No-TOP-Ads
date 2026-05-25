@@ -1,11 +1,15 @@
-/* Hide TOP ads using the :has() selector */
+/* Target the specific class provided by the user */
+.css-3xiokn,
+/* Hide containers that have the TOP badge */
+div[data-testid="l-card"]:has(.css-3xiokn),
+/* Keep previous selectors as fallback */
 div[data-testid="l-card"]:has(div[data-testid="ad-badge"]),
 div[data-testid="l-card"]:has(span[data-testid="ad-badge"]),
 [data-testid="ad-badge"] {
     display: none !important;
 }
 
-/* Fallback for older versions if they exist */
+/* Fallback for older versions or variations */
 .promoted, .featured, .top-badge {
     display: none !important;
 }
