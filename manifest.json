@@ -19,11 +19,12 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "olx-no-top-ads@example.com"
+      "id": "olx-no-top-ads@example.com",
+      "strict_min_version": "109.0"
     }
   },
   "icons": {
-    "48": "icon.png",
-    "128": "icon.png"
+    "48": "icon-48.png",
+    "128": "icon-128.png"
   }
 }
