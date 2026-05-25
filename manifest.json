@@ -21,5 +21,9 @@
     "gecko": {
       "id": "olx-no-top-ads@example.com"
     }
+  },
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
   }
 }
