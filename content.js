@@ -1,23 +1,25 @@
 // Function to hide ads based on selectors and content
 const hideTopAds = () => {
-    // 1. Hide by the specific class provided by the user
-    const topBadges = document.querySelectorAll('.css-3xiokn, [data-testid="ad-badge"]');
-    topBadges.forEach(badge => {
-        // Try to find the closest card container to hide the whole ad
-        const card = badge.closest('[data-testid="l-card"]') || badge.parentElement;
-        if (card) {
-            card.style.display = 'none';
-        }
-    });
-
-    // 2. Text-based detection as a backup (searching for "ТОП")
-    const allDivs = document.querySelectorAll('div, span');
-    allDivs.forEach(el => {
-        if (el.textContent === 'ТОП' && el.offsetParent !== null) {
-            const card = el.closest('[data-testid="l-card"]');
-            if (card) {
-                card.style.display = 'none';
+    // 1. Find all ad cards
+    const adCards = document.querySelectorAll('div[data-testid="l-card"]');
+    
+    adCards.forEach(card => {
+        // Check for common markers of TOP ads inside the card
+        const hasBadgeTestId = card.querySelector('[data-testid="ad-badge"]');
+        const hasUserClass = card.querySelector('.css-3xiokn');
+        
+        // Text-based check: find any small element that says "ТОП"
+        let hasTopText = false;
+        const potentialBadges = card.querySelectorAll('div, span');
+        for (const el of potentialBadges) {
+            if (el.textContent.trim() === 'ТОП') {
+                hasTopText = true;
+                break;
             }
+        }
+
+        if (hasBadgeTestId || hasUserClass || hasTopText) {
+            card.style.display = 'none';
         }
     });
 };

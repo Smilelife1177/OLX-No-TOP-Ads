@@ -1,15 +1,11 @@
-/* Target the specific class provided by the user */
-.css-3xiokn,
-/* Hide containers that have the TOP badge */
-div[data-testid="l-card"]:has(.css-3xiokn),
-/* Keep previous selectors as fallback */
-div[data-testid="l-card"]:has(div[data-testid="ad-badge"]),
-div[data-testid="l-card"]:has(span[data-testid="ad-badge"]),
-[data-testid="ad-badge"] {
+/* Hide containers that have the TOP badge testid */
+div[data-testid="l-card"]:has([data-testid="ad-badge"]),
+/* Use the user-provided class but only as a descendant of a card */
+div[data-testid="l-card"]:has(.css-3xiokn) {
     display: none !important;
 }
 
-/* Fallback for older versions or variations */
-.promoted, .featured, .top-badge {
+/* Fallback for the badge itself if it somehow stays visible */
+[data-testid="ad-badge"], .css-3xiokn {
     display: none !important;
 }
