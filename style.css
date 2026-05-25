@@ -1,0 +1,11 @@
+/* Hide TOP ads using the :has() selector */
+div[data-testid="l-card"]:has(div[data-testid="ad-badge"]),
+div[data-testid="l-card"]:has(span[data-testid="ad-badge"]),
+[data-testid="ad-badge"] {
+    display: none !important;
+}
+
+/* Fallback for older versions if they exist */
+.promoted, .featured, .top-badge {
+    display: none !important;
+}

@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "OLX No TOP Ads",
+  "version": "1.0",
+  "description": "Hides TOP ads on OLX.ua",
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.olx.ua/*",
+        "*://olx.ua/*"
+      ],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "olx-no-top-ads@example.com"
+    }
+  }
+}
